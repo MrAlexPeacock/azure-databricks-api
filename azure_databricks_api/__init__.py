@@ -4,3 +4,5 @@
 # https://opensource.org/licenses/MIT
 
 from azure_databricks_api.__rest_client import AzureDatabricksRESTClient
+from azure_databricks_api.__sp_auth import ServicePrincipalAuth
+from azure_databricks_api.__pat_auth import PersonalAccessTokenAuth

@@ -4,7 +4,6 @@
 # https://opensource.org/licenses/MIT
 
 import json
-
 import requests
 
 
@@ -15,10 +14,10 @@ class RESTBase(object):
         self._host = kwargs.pop('host')
         self._api_version = kwargs.pop('api_version')
         self._uri = "{host}/api/{api_version}/".format(host=self._host, api_version=self._api_version)
-        self._token = kwargs.pop('token')
-        self._headers = {'Authorization': 'Bearer {0}'.format(self._token)}
+        self._credentials = kwargs.pop('credentials')
+        self._headers = self._credentials.authenticate()
         self._rest_call = {'GET': self.__get,
-                          'POST': self.__post}
+                           'POST': self.__post}
 
     def __get(self, api_endpoint, data=None):
         """

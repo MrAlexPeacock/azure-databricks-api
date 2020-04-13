@@ -20,13 +20,13 @@ class AzureDatabricksRESTClient(object):
             Profiles Remove
     """
 
-    def __init__(self, region, token):
+    def __init__(self, region, credentials):
         self._region = region
-        self._token = token
+        self._credentials = credentials
         self._host = 'https://{region}.azuredatabricks.net'.format(region=self._region)
         self.api_version = '2.0'
 
-        parameters = {'host': self._host, 'api_version': self.api_version, 'token': self._token}
+        parameters = {'host': self._host, 'api_version': self.api_version, 'credentials': self._credentials}
 
         self.clusters = ClusterAPI(**parameters)
         self.groups = GroupsAPI(**parameters)
