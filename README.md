@@ -30,7 +30,9 @@ from azure_databricks_api import PersonalAccessTokenAuth
 azure_region = '[INSERT YOUR REGION]'
 token = '[INSERT YOUR PERSONAL ACCESS TOKEN]' 
 
-client = AzureDatabricksRESTClient(region=azure_region, token=token)
+credentials = PersonalAccessTokenAuth(pat_token=token)
+
+client = AzureDatabricksRESTClient(region=azure_region, credentials)
 ```
 
 ### Client Instantiation For Use With Service Principal
@@ -44,8 +46,8 @@ client_id = '[INSERT YOUR AZURE AD APPLICATION CLIENT ID]'
 client_secret = '[INSERT YOUR AZURE AD APPLICATION CLIENT SECRET]'
 databricks_resource_id = '[INSERT THE RESOURCE ID OF YOUR DATABRICKS WORKSPACE]'
 
-credentials = ServicePrincipalAuth(tenant_id = tenant_id, client_id = client_id, client_secret = client_secret,
-                                   databricks_resource_id = databricks_resource_id)
+credentials = ServicePrincipalAuth(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret,
+                                   databricks_resource_id=databricks_resource_id)
 
 client = AzureDatabricksRESTClient(azure_region, credentials)
 ```
